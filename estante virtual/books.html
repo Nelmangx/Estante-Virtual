@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Minha Estante Virtual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .status-quero-ler { background-color: #fff3cd; }
+    .status-comprar { background-color: #d1ecf1; }
+    .status-lido { background-color: #d4edda; }
+    .status-comprado { background-color: #f8d7da; }
+    .card-filtros {
+      position: sticky;
+      top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- 🎯 Filtros na lateral esquerda -->
+      <div class="col-lg-3 mb-4">
+        <div class="card card-filtros shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Filtrar por status</h5>
+          </div>
+          <div class="card-body d-flex flex-column gap-2">
+            <button class="btn btn-outline-secondary" onclick="aplicarFiltroStatus('todos')">Todos</button>
+            <button class="btn btn-outline-success" onclick="aplicarFiltroStatus('lido')">Lidos</button>
+            <button class="btn btn-outline-warning" onclick="aplicarFiltroStatus('quero ler')">Quero ler</button>
+            <button class="btn btn-outline-info" onclick="aplicarFiltroStatus('comprar')">Comprar</button>
+            <button class="btn btn-outline-danger" onclick="aplicarFiltroStatus('comprado')">Comprados</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📚 Conteúdo principal -->
+      <div class="col-lg-9">
+        <h1 class="text-center mb-4">📚 Minha Estante Virtual</h1>
+
+        <!-- 🔍 Campo de busca -->
+        <div class="mb-3">
+          <input type="text" id="searchInput" class="form-control" placeholder="Buscar livro por título...">
+        </div>
+
+        <!-- 📘 Formulário -->
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <form id="bookForm">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <input type="text" id="title" class="form-control" placeholder="Título do livro" required>
+                </div>
+                <div class="col-md-3">
+                  <select id="status" class="form-select">
+                    <option value="quero ler">Quero ler</option>
+                    <option value="comprar">Comprar</option>
+                    <option value="lido">Lido</option>
+                    <option value="comprado">Comprado</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select id="category" class="form-select">
+                    <option value="ficção">Ficção</option>
+                    <option value="não-ficção">Não-ficção</option>
+                    <option value="romance">Romance</option>
+                    <option value="fantasia">Fantasia</option>
+                    <option value="outros">Outros</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" id="notes" class="form-control" placeholder="Notas ou comentários">
+                </div>
+                <div class="col-md-6 text-end">
+                  <button type="submit" class="btn btn-primary">Adicionar livro</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 📚 Lista de livros -->
+        <ul id="bookList" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="books.js"></script>
+</body>
+</html>
